@@ -6,12 +6,18 @@ Created on Mon Mar  4 16:52:04 2024
 """
 
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 """ FIND LATITUDE AND LONGITUDE OF LOCATION """
 # Geocoding API parameters
 city = "London"
 limit = "1"
-# this is where the API key was :/
+
+api_key_OpenWeather = os.getenv('WEATHER_API_KEY')
+
 # Geocoding API call
 url_location = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit={limit}&appid={api_key_OpenWeather}"
 
@@ -50,7 +56,9 @@ else:
 # Yelp API call
 url_travel = f"https://api.yelp.com/v3/businesses/search?term={term}&latitude={lat}&longitude={lon}"
 # Yelp API headers
-# this is where the other API key was :/
+
+api_key_Yelp = os.getenv('YELP_API_KEY')
+
 headers = {
     "accept": "application/json",
     "Authorization": f"Bearer {api_key_Yelp}"
