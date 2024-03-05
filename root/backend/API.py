@@ -3,7 +3,6 @@
 """
 Created on Mon Mar  4 16:52:04 2024
 
-@author: ariontripathi
 """
 
 import requests
@@ -12,7 +11,7 @@ import requests
 # Geocoding API parameters
 city = "London"
 limit = "1"
-api_key_OpenWeather = "5c870a8c22dbadcf832528f10fcc5872"
+# this is where the API key was :/
 # Geocoding API call
 url_location = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit={limit}&appid={api_key_OpenWeather}"
 
@@ -51,7 +50,7 @@ else:
 # Yelp API call
 url_travel = f"https://api.yelp.com/v3/businesses/search?term={term}&latitude={lat}&longitude={lon}"
 # Yelp API headers
-api_key_Yelp = "jhib7BAFxq9vdmrhEIHAI5MVbPMG9PH3jP2NraAa_ExrFVpGRrygNhIyuwSls1Q_Op9EPanSxDArzaikyCyB2leHA-rH0uGbRaLwMPv1JXFdVcWbgsiyUQFv3VnmZXYx"
+# this is where the other API key was :/
 headers = {
     "accept": "application/json",
     "Authorization": f"Bearer {api_key_Yelp}"
