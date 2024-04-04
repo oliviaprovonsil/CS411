@@ -3,7 +3,7 @@ import logo from './TravelBuddyLogo.svg';
 import logoText from './TravelBuddyText.svg'
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-const OAuth2Data = require('./credentials.json');
+const OAuth2Data = require('./credentials1.json');
 const client_ID = OAuth2Data.web.client_id;
 
 
