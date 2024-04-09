@@ -25,6 +25,7 @@ function Login() {
         <img src={logo} className="App-logo" alt="logo" />
         <img src={logoText} className="App-logo-text" alt="logo" />
         <GoogleButton />
+    
         </div>
         
     )
