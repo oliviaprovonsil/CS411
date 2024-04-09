@@ -12,14 +12,7 @@
   height: 15vmin;
   pointer-events: none;
 }
-.logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20%;
 
-}
 
 
 
