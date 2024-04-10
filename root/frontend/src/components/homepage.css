@@ -3,7 +3,7 @@
     display: flex; /* Use flexbox */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    padding: 300px;
+    /*padding: 300px;*/
 }
 
 
@@ -16,3 +16,38 @@
     height: 40px; /* Adjust height as needed */
     box-sizing: border-box;
 }
+
+h1{
+    padding-top:200px;
+    text-align: center;
+    color: black;
+    font-family: "Lucida Console", "Courier New", monospace; /* Change the font family */
+    /*padding: 250px;*/
+}
+
+#arrival-date{
+    position: fixed;
+    left: 475px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Align items vertically */
+    color:black;
+    font-size:15px;
+}
+
+#arrival-date p {
+    margin-right: 10px; /* Add margin-right for spacing */
+  }
+
+#departure-date{
+    position: fixed;
+    left: 730px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Align items vertically */
+    color:black;
+    font-size:15px;
+}
+
+#departure-date p {
+    margin-right: 10px; /* Add margin-right for spacing */
+  }
+  

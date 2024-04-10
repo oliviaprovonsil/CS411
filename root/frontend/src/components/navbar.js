@@ -6,6 +6,7 @@ const client_ID = OAuth2Data.web.client_id;*/
 import './navbar.css'
 import logo from '../TravelBuddyLogo.svg';
 import logoText from '../TravelBuddyText.svg'
+import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
 function NavBar() {
    
