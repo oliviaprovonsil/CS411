@@ -13,8 +13,10 @@ function NavBar() {
     return (
         <nav className="nav">
             <div className="logoContainer">
+                <Link to="/homepage">
                 <img src={logo} className="logo" alt="logo" />
                 <img src={logoText} className="logoText" alt="logo text" />
+                </Link>
             </div>
         <ul>
             <li>

@@ -1,6 +1,7 @@
 import './homepage.css'
 import NavBar from'./navbar'
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 
 /* import { GoogleLogin } from 'react-google-login';
@@ -8,6 +9,8 @@ const OAuth2Data = require('../credentials1.json');
 const client_ID = OAuth2Data.web.client_id; */
 
 function HomePage() {
+    
+
     const [value, setValue] = useState('');
     const [arrivalDate, setArrivalDate] = useState('');
     const [departureDate, setDepartureDate] = useState('');
@@ -69,7 +72,9 @@ function HomePage() {
             </div>  
 
             <div className="search-button">
-
+            <Link to="/events">
+                <button>Search</button>
+            </Link>
             </div>  
         </div>
     );
