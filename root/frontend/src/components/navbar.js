@@ -6,7 +6,7 @@ const client_ID = OAuth2Data.web.client_id;*/
 import './navbar.css'
 import logo from '../TravelBuddyLogo.svg';
 import logoText from '../TravelBuddyText.svg'
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { Link } from 'react-router-dom';
 
 function NavBar() {
    
@@ -18,7 +18,7 @@ function NavBar() {
             </div>
         <ul>
             <li>
-                <a href="/your-trips">Your Trips</a>
+                <Link to="/yourtrips">Your Trips</Link>
             </li>
         </ul>
         </nav>

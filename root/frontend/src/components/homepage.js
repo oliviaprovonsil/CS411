@@ -1,4 +1,5 @@
 import './homepage.css'
+import NavBar from'./navbar'
 import React, { useState } from 'react';
 
 
@@ -35,6 +36,7 @@ function HomePage() {
 
     return (
         <div>
+            <NavBar />
             <h1>Use Your Travel Buddy</h1>
             
             <div id="text-input">
