@@ -21,11 +21,13 @@ function Login() {
 
    
     return(
+        <div className ="background">
         <div className="logo-container">
         <img src={logo} className="App-logo" alt="logo" />
         <img src={logoText} className="App-logo-text" alt="logo" />
         <GoogleButton />
     
+        </div>
         </div>
         
     )

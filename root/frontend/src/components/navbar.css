@@ -3,7 +3,7 @@
 }
 
 .nav {
-    background-color: #D3e4ee;
+    background-color: white ;
     color: black;
     display: flex;
     justify-content: space-between;
@@ -21,7 +21,6 @@
 }
 
 .nav a {
-    font-family: "Lucida Console", "Courier New", monospace;
     color: inherit;
     text-decoration: none;
     height: 100%;

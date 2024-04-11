@@ -1,6 +1,10 @@
-.App {
+
+/* .App {
   background-color: #f3f6fb;
-}
+  height: 100vh; Ensure full viewport height */
+
+
+
 
 .App-logo {
   height: 25vmin;
@@ -13,9 +17,8 @@
 }
 
 
-
 .App-header {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   /*align-items: center;*/

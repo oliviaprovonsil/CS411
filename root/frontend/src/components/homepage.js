@@ -10,7 +10,7 @@ const client_ID = OAuth2Data.web.client_id; */
 
 function HomePage() {
     
-
+    /* Arrival-Departure*/
     const [value, setValue] = useState('');
     const [arrivalDate, setArrivalDate] = useState('');
     const [departureDate, setDepartureDate] = useState('');
@@ -38,44 +38,38 @@ function HomePage() {
       }
 
     return (
-        <div>
+        <div className="background-container">
             <NavBar />
-            <h1>Use Your Travel Buddy</h1>
+            <h1>
+                <span class="white-text">Enjoy Vacation. </span>
+                <span class="blue-text"> Rain or Shine.</span>
+            </h1>
             
             <div id="text-input">
                 <input 
                     type="text"
                     value={value}
                     onChange={handleChange}
-                    placeholder="Enter your zipcode"
+                    placeholder="Enter a city or zipcode"
                 />
             </div>
 
-            <div id="arrival-date">
-                <p>Arrival Date:</p>
-                <input 
-                    type="date" 
-                    name="arrival" 
-                    value={arrivalDate} 
-                    onChange={handleArrivalDateChange}
-                />
-            </div>
-
-            <div id="departure-date">
-                <p>Departure Date:</p>
-                <input 
-                    type="date" 
-                    name="departure" 
-                    value={departureDate} 
-                    onChange={handleDepartureDateChange}
-                />
-            </div>  
+            <div id="arrival-departure-container">
+                <div id="arrival-date">
+                    <p>Arrival:</p>
+                    <input type="date" name="arrival" value={arrivalDate} onChange={handleArrivalDateChange} />
+                </div>
+                <div id="departure-date">
+                    <p>Departure:</p>
+                    <input type="date" name="departure" value={departureDate} onChange={handleDepartureDateChange} />
+                </div>
+            </div> 
 
             <div className="search-button">
             <Link to="/events">
-                <button>Search</button>
+                <button className="search"> Search</button>
             </Link>
-            </div>  
+            </div>
         </div>
     );
 }

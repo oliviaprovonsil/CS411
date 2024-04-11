@@ -1,4 +1,4 @@
-import './App.css';
+/* import './App.css'; */
 
 /*import Login from './components/login';
 import GoogleButton from './components/googleButton';
@@ -19,6 +19,7 @@ function App() {
   return (
     
     <div className="App">
+      
       <BrowserRouter>
       <Routes>
         <Route index element={<Login />} />
