@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Bungee&display=swap');
+
+.background-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../rain.jpeg'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    font-family: "Bungee", sans-serif;
+  }
+
+#text-input {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /*padding: 300px;*/
+}
+
+
+#text-input input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    width: 700px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    box-sizing: border-box;
+}
+
+.white-text {
+    color: white;
+  }
+  
+  .blue-text {
+    color: #FDFD96;
+    padding-left: 10px;
+  }
+
+h1{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: "Bungee", sans-serif;
+    font-style: normal;
+    /* Change the font family */
+    padding-top: 200px;
+    font-size: 3rem;
+}
+
+#arrival-departure-container {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  #arrival-date, #departure-date {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Align items vertically */
+    color: #D3e4ee;
+    font-size: 15px;
+    margin-right: 20px; /* Add margin between the dates */
+  }
+  
+  #arrival-date p, #departure-date p {
+    margin-right: 5px; /* Add margin-right for spacing */
+  }
+  
+
+.search-button {
+    text-align: center;
+    padding: 2rem 0 0 0; 
+}
+
+.search {
+    font-family: "Bungee", sans-serif;
+    font-size: 1.25rem;
+    /* Set background color */
+    background-color: blue;
+    /* Set text color */
+    color: white;
+    /* Set padding */
+    padding: 10px 40px;
+    /* Set border radius */
+    border-radius: 50px;
+    /* Set border and remove default styles */
+    border: none;
+    /* Set cursor to pointer on hover */
+    cursor: pointer;
+    /* Add hover effect */
+    transition: background-color 0.3s ease;
+  }

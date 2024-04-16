@@ -1,0 +1,13 @@
+.background{
+  background-color: #f3f6fb;
+  height: 100vh; /* Ensure full viewport height */
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20%;
+  
+  }
