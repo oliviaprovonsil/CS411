@@ -1,7 +1,9 @@
+import axios from 'axios';
 import './homepage.css'
-import NavBar from'./navbar'
+import NavBar from './navbar'
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 /* import { GoogleLogin } from 'react-google-login';
@@ -9,9 +11,10 @@ const OAuth2Data = require('../credentials1.json');
 const client_ID = OAuth2Data.web.client_id; */
 
 function HomePage() {
-    
+
     /* Arrival-Departure*/
     const [value, setValue] = useState('');
+    const navigate = useNavigate();
     const [arrivalDate, setArrivalDate] = useState('');
     const [departureDate, setDepartureDate] = useState('');
 
@@ -34,8 +37,18 @@ function HomePage() {
         } else {
             setDepartureDate(newDepartureDate);
         }
-    
-      }
+
+    }
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post('http://localhost:5000/location', { city: value });
+            // Navigate to '/events' route and pass event data
+            navigate('/events', { state: { events: response.data.events } });
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     return (
         <div className="background-container">
@@ -44,9 +57,9 @@ function HomePage() {
                 <span class="white-text">Enjoy Vacation. </span>
                 <span class="blue-text"> Rain or Shine.</span>
             </h1>
-            
+
             <div id="text-input">
-                <input 
+                <input
                     type="text"
                     value={value}
                     onChange={handleChange}
@@ -63,12 +76,12 @@ function HomePage() {
                     <p>Departure:</p>
                     <input type="date" name="departure" value={departureDate} onChange={handleDepartureDateChange} />
                 </div>
-            </div> 
+            </div>
 
             <div className="search-button">
-            <Link to="/events">
-                <button className="search"> Search</button>
-            </Link>
+                <Link to="/events">
+                    <button className="search" onClick={handleSubmit}>Search</button>
+                </Link>
             </div>
         </div>
     );

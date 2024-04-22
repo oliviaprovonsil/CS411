@@ -5,31 +5,35 @@ import GoogleButton from './components/googleButton';
 import logo from './TravelBuddyLogo.svg';
 import logoText from './TravelBuddyText.svg'*/
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./components/login"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/login";
 import HomePage from './components/homepage';
 import YourTrips from './components/yourtrips';
 import Events from './components/events';
 
-const OAuth2Data = require('./credentials1.json');
-const client_ID = OAuth2Data.web.client_id;
-
-
 function App() {
   return (
-    
     <div className="App">
-      
       <BrowserRouter>
-      <Routes>
-        <Route index element={<Login />} />
-        <Route path="/homepage" element={<HomePage />} />
-        <Route path="/yourtrips" element={<YourTrips />} />
-        <Route path="/events" element={<Events />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/yourtrips" element={<YourTrips />} />
+          <Route path="/events" element={<Events />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
+// Render the App component to the DOM
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 export default App;
