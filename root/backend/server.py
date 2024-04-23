@@ -15,7 +15,7 @@ def index():
     city = "London"
     limit = "1"
 
-    api_key_OpenWeather = "b65a4f8d4b6204531225d7784a7b3265"
+    api_key_OpenWeather = os.getenv('WEATHER_API_KEY')
 
     # Geocoding API call
     url_location = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit={limit}&appid={api_key_OpenWeather}"
@@ -44,7 +44,7 @@ def index():
 
     url_travel = f"https://api.yelp.com/v3/businesses/search?term={term}&latitude={lat}&longitude={lon}"   
 
-    api_key_Yelp = "jhib7BAFxq9vdmrhEIHAI5MVbPMG9PH3jP2NraAa_ExrFVpGRrygNhIyuwSls1Q_Op9EPanSxDArzaikyCyB2leHA-rH0uGbRaLwMPv1JXFdVcWbgsiyUQFv3VnmZXYx"
+    api_key_Yelp = os.getenv('YELP_API_KEY')
 
     headers = {
     "accept": "application/json",

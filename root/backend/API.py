@@ -11,12 +11,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 """ FIND LATITUDE AND LONGITUDE OF LOCATION """
 # Geocoding API parameters
 city = "London"
 limit = "1"
 
-api_key_OpenWeather = 'b65a4f8d4b6204531225d7784a7b3265'
+api_key_OpenWeather = os.getenv('WEATHER_API_KEY')
 print(api_key_OpenWeather)
 
 # Geocoding API call
