@@ -1,71 +1,65 @@
-import ApiService from './apiService';
-import './homepage.css'
-import NavBar from'./navbar'
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import NavBar from './navbar';
+import './homepage.css';
 
-
-/* import { GoogleLogin } from 'react-google-login';
-const OAuth2Data = require('../credentials1.json');
-const client_ID = OAuth2Data.web.client_id; */
+const cities = [
+    'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose',
+    'London', 'Paris', 'Berlin', 'Madrid', 'Rome', 'Moscow', 'Beijing', 'Tokyo', 'Seoul', 'Mumbai',
+    'Cairo', 'Lagos', 'Cape Town', 'Nairobi', 'Sydney', 'Melbourne', 'Buenos Aires', 'São Paulo', 'Lima', 'Bogotá',
+    'Vancouver', 'Toronto', 'Montreal', 'Calgary', 'Edmonton', 'Ottawa', 'Winnipeg', 'Quebec City', 'Halifax', 'Victoria',
+    'Jakarta', 'Shanghai', 'Karachi', 'Delhi', 'Istanbul', 'Dhaka', 'Bangkok', 'Kuala Lumpur', 'Athens', 'Lisbon',
+    'Budapest', 'Prague', 'Warsaw', 'Stockholm', 'Vienna', 'Amsterdam', 'Brussels', 'Helsinki', 'Oslo', 'Copenhagen',
+    'Kiev', 'St. Petersburg', 'Lahore', 'Chennai', 'Bangalore', 'Hyderabad', 'Pune', 'Ahmedabad', 'Kathmandu', 'Colombo',
+    'Mexico City', 'Guadalajara', 'Monterrey', 'Puebla', 'Tijuana', 'Santiago', 'Caracas', 'Quito', 'Tehran',
+    'Dubai', 'Doha', 'Riyadh', 'Jeddah', 'Mecca', 'Baghdad', 'Amman', 'Beirut', 'Jerusalem', 'Rio de Janeiro',
+    'Algiers', 'Accra', 'Addis Ababa', 'Antananarivo', 'Auckland', 'Busan', 'Brisbane', 'Casablanca', 'Chiang Mai', 'Da Nang',
+    'Dakar', 'Dar es Salaam', 'Durban', 'Fukuoka', 'Guangzhou', 'Hanoi', 'Ho Chi Minh City', 'Hong Kong', 'Isfahan', 'Islamabad',
+    'Johannesburg', 'Khartoum', 'Kinshasa', 'Kolkata', 'Kyoto', 'Luanda', 'Lusaka', 'Lyon', 'Marrakech', 'Minsk',
+    'Monaco', 'Montevideo', 'Nagoya', 'Naples', 'Osaka', 'Panama City', 'Perth', 'Port Elizabeth', 'Port Moresby', 'Rabat',
+    'San Francisco', 'Sapporo', 'Seattle', 'Seville', 'Singapore', 'St. Louis', 'Tel Aviv', 'Tripoli', 'Tunis', 'Ulaanbaatar',
+    'Valencia', 'Venice', 'Vladivostok', 'Wellington', 'Xiamen', 'Yangon', 'Zagreb', 'Zurich'
+];
 
 function HomePage() {
-    
-    /* Arrival-Departure*/
-    const [value, setValue] = useState('');
-    const [arrivalDate, setArrivalDate] = useState('');
-    const [departureDate, setDepartureDate] = useState('');
     const [input, setInput] = useState("");
+    const [filteredCities, setFilteredCities] = useState([]);
 
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
+    const handleInputChange = (e) => {
+        const userInput = e.target.value;
+        setInput(userInput);
 
-    const handleArrivalDateChange = (event) => {
-        setArrivalDate(event.target.value);
-    };
-
-    const handleDepartureDateChange = (event) => {
-        const newDepartureDate = event.target.value;
-
-        // Perform validation
-        if (new Date(newDepartureDate) <= new Date(arrivalDate)) {
-            alert('Departure date must be later than arrival date');
-            // Reset the departure date
-            setDepartureDate('');
-        } else {
-            setDepartureDate(newDepartureDate);
+        if (!userInput) {
+            setFilteredCities([]);
+            return;
         }
-    
-      }
 
-      const handleKeyDown =  async (event) => {
-        if (event.key === 'Enter'){
-          event.preventDefault();
-          await SearchButton();
-    
-          try {
-            const response = await fetch('http://localhost:5000/search', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({searchQuery: input}),
-            });
-            const data = await response.json();
-            console.log("this is from the frontend", data);
-            setInput('')
-          } catch (err){
-            console.error("Error in user input:", err);
-          }
-        }
-      }
-
-      const handleButtonClick = async () => {
-        await SearchButton();
+        const filter = userInput.toLowerCase();
+        const filtered = cities.filter(city => city.toLowerCase().includes(filter));
+        setFilteredCities(filtered.slice(0, 5)); // Limit to 5 suggestions
     };
 
-    const SearchButton = async () => {
+    const handleSelectCity = (city) => {
+        setInput(city);
+        setFilteredCities([]);
+    };
+
+    const handleKeyDown = async (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if (cities.includes(input)) {
+                await handleSearch();
+            }
+        }
+    };
+
+    const handleButtonClick = async () => {
+        if (cities.includes(input)) {
+            await handleSearch();
+        }
+    };
+
+    const handleSearch = async () => {
         try {
             const response = await fetch('http://localhost:5000/search', {
                 method: 'POST',
@@ -75,8 +69,8 @@ function HomePage() {
                 body: JSON.stringify({ searchQuery: input }),
             });
             const data = await response.json();
-            console.log("this is from the frontend", data);
-            setInput('');
+            console.log("Response from the frontend", data);
+            setInput(''); // Clear input after successful search
         } catch (err) {
             console.error("Error in user input:", err);
         }
@@ -86,39 +80,34 @@ function HomePage() {
         <div className="background-container">
             <NavBar />
             <h1>
-                <span class="white-text">Enjoy Vacation. </span>
-                <span class="blue-text"> Rain or Shine.</span>
+                <span className="white-text">Enjoy Vacation. </span>
+                <span className="blue-text"> Rain or Shine.</span>
             </h1>
-            
+
             <div id="text-input">
-                <input 
+                <input
                     type="text"
                     value={input}
-                    onChange={e => setInput(e.target.value)}
+                    onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
                     placeholder="Enter a city or zipcode"
                 />
+                {filteredCities.length > 0 && (
+                    <ul className="city-dropdown">
+                        {filteredCities.map((city, index) => (
+                            <li key={index} onClick={() => handleSelectCity(city)}>{city}</li>
+                        ))}
+                    </ul>
+                )}
             </div>
 
-            <div id="arrival-departure-container">
-                <div id="arrival-date">
-                    <p>Arrival:</p>
-                    <input type="date" name="arrival" value={arrivalDate} onChange={handleArrivalDateChange} />
-                </div>
-                <div id="departure-date">
-                    <p>Departure:</p>
-                    <input type="date" name="departure" value={departureDate} onChange={handleDepartureDateChange} />
-                </div>
-            </div> 
-
             <div className="search-button">
-            <Link to="/events">
-                <button className="search" onClick={handleButtonClick}> Search</button>
-            </Link>
+                <Link to="/events">
+                    <button className="search" onClick={handleButtonClick}>Search</button>
+                </Link>
             </div>
         </div>
     );
 }
-
 
 export default HomePage;
