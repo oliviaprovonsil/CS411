@@ -1,3 +1,4 @@
+import ApiService from './apiService';
 import './homepage.css'
 import NavBar from'./navbar'
 import React, { useState } from 'react';
@@ -14,6 +15,7 @@ function HomePage() {
     const [value, setValue] = useState('');
     const [arrivalDate, setArrivalDate] = useState('');
     const [departureDate, setDepartureDate] = useState('');
+    const [input, setInput] = useState("");
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -37,6 +39,49 @@ function HomePage() {
     
       }
 
+      const handleKeyDown =  async (event) => {
+        if (event.key === 'Enter'){
+          event.preventDefault();
+          await SearchButton();
+    
+          try {
+            const response = await fetch('http://localhost:5000/search', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({searchQuery: input}),
+            });
+            const data = await response.json();
+            console.log("this is from the frontend", data);
+            setInput('')
+          } catch (err){
+            console.error("Error in user input:", err);
+          }
+        }
+      }
+
+      const handleButtonClick = async () => {
+        await SearchButton();
+    };
+
+    const SearchButton = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ searchQuery: input }),
+            });
+            const data = await response.json();
+            console.log("this is from the frontend", data);
+            setInput('');
+        } catch (err) {
+            console.error("Error in user input:", err);
+        }
+    };
+
     return (
         <div className="background-container">
             <NavBar />
@@ -48,8 +93,9 @@ function HomePage() {
             <div id="text-input">
                 <input 
                     type="text"
-                    value={value}
-                    onChange={handleChange}
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     placeholder="Enter a city or zipcode"
                 />
             </div>
@@ -67,7 +113,7 @@ function HomePage() {
 
             <div className="search-button">
             <Link to="/events">
-                <button className="search"> Search</button>
+                <button className="search" onClick={handleButtonClick}> Search</button>
             </Link>
             </div>
         </div>

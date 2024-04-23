@@ -16,7 +16,8 @@ load_dotenv()
 city = "London"
 limit = "1"
 
-api_key_OpenWeather = os.getenv('WEATHER_API_KEY')
+api_key_OpenWeather = 'b65a4f8d4b6204531225d7784a7b3265'
+print(api_key_OpenWeather)
 
 # Geocoding API call
 url_location = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit={limit}&appid={api_key_OpenWeather}"
@@ -24,6 +25,7 @@ url_location = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit={li
 # Geocoding API response and JSON data
 response_location = requests.get(url_location)
 data_location = response_location.json()
+print(data_location)
 
 # Store the latitude and longitude of the user-specified location
 lat = data_location[0]["lat"]

@@ -10,6 +10,7 @@ import Login from "./components/login"
 import HomePage from './components/homepage';
 import YourTrips from './components/yourtrips';
 import Events from './components/events';
+import ApiService from "./components/apiService";
 
 const OAuth2Data = require('./credentials1.json');
 const client_ID = OAuth2Data.web.client_id;
@@ -28,6 +29,7 @@ function App() {
         <Route path="/events" element={<Events />} />
       </Routes>
       </BrowserRouter>
+      {/* <ApiService /> */}
     </div>
   );
 }
