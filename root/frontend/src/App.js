@@ -26,7 +26,7 @@ function App() {
         <Route index element={<Login />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/yourtrips" element={<YourTrips />} />
-        <Route path="/events" element={<ApiService />} />
+        <Route path="/events" element={<Events />} />
       </Routes>
       </BrowserRouter>
       {/* <ApiService /> */}

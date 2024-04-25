@@ -17,7 +17,7 @@ function HomePage() {
     const [arrivalDate, setArrivalDate] = useState('');
     const [departureDate, setDepartureDate] = useState('');
     const [input, setInput] = useState("");
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -55,6 +55,7 @@ function HomePage() {
               body: JSON.stringify({searchQuery: input}),
             });
             const data = await response.json();
+            navigate('/events', { state: { data: data } });
             console.log("this is from the frontend", data);
             setInput('')
           } catch (err){
@@ -77,6 +78,7 @@ function HomePage() {
                 body: JSON.stringify({ searchQuery: input }),
             });
             const data = await response.json();
+            navigate('/events', { state: { data: data } });
             setInput('');
         } catch (err) {
             console.error("Error in user input:", err);
