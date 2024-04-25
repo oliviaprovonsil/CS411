@@ -2,6 +2,7 @@ import ApiService from './apiService';
 import './homepage.css'
 import NavBar from'./navbar'
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
 
@@ -16,6 +17,7 @@ function HomePage() {
     const [arrivalDate, setArrivalDate] = useState('');
     const [departureDate, setDepartureDate] = useState('');
     const [input, setInput] = useState("");
+    const history = useNavigate();
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -42,7 +44,7 @@ function HomePage() {
       const handleKeyDown =  async (event) => {
         if (event.key === 'Enter'){
           event.preventDefault();
-          await SearchButton();
+        SearchButton();
     
           try {
             const response = await fetch('http://localhost:5000/search', {
@@ -62,7 +64,7 @@ function HomePage() {
       }
 
       const handleButtonClick = async () => {
-        await SearchButton();
+        SearchButton();
     };
 
     const SearchButton = async () => {
@@ -75,7 +77,6 @@ function HomePage() {
                 body: JSON.stringify({ searchQuery: input }),
             });
             const data = await response.json();
-            console.log("this is from the frontend", data);
             setInput('');
         } catch (err) {
             console.error("Error in user input:", err);
