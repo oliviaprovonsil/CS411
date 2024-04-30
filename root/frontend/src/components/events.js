@@ -16,7 +16,11 @@ function Events() {
       {/* Render your data here */}
       {data ? (
         <div>
-          {data.businesses}
+          <ul>
+            {data.businesses.map((item, index) => (
+              <li key={index}>{JSON.stringify(item)}</li>
+            ))}
+          </ul>
         </div>
       ) : (
         <div>Loading...</div>

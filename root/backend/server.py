@@ -3,6 +3,11 @@ from flask_cors import CORS
 import requests
 import os
 from dotenv import load_dotenv
+from pymongo import MongoClient
+from datetime import datetime
+from bson.objectid import ObjectId
+import logging
+
 
 load_dotenv()
 
@@ -10,9 +15,29 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
+username = 'pranitd23'
+password = 'pranit17'
+cluster_url = 'mongodb+srv://pranitd23:*****@weatherTravel.plxzhdv.mongodb.net/'
+db_name = 'test'
+
+# Create a MongoClient to the running mongod instance.
+client = MongoClient('mongodb+srv://pranitd23:pranit17@weather-project.plxzhdv.mongodb.net/{db_name}?retryWrites=true&w=majority',  tls=True, tlsAllowInvalidCertificates=True)
+
+db = client[db_name]
+collection = db['test'] 
+logging.basicConfig(level=logging.INFO)
+
+
+
+
+@app.route("/")
+def hello():
+    return jsonify({"message": "Search endpoint reached"}), 200
 
 @app.route("/search", methods=['POST'])
 def search():
+    app.logger.info(f"Incoming request: {request.data}")
+    print("Search endpoint reached")
     search_data = request.get_json()
     location = search_data.get('searchQuery', 'London')
 
@@ -79,8 +104,24 @@ def index(location):
     data_travel = response_travel.json()
     businesses = [business["name"] for business in data_travel["businesses"]]
     businesses.insert(0,location)
-    return jsonify(businesses=businesses)
+    
+    new_document = {
+    "location": businesses[0],
+    "businesses": businesses,
+}
+    
+    if collection.find_one({"location": location}):
+        app.logger.info(f"A document with location '{location}' already exists.")
 
+    else:     
+        if new_document:
+            inserted_id = collection.insert_one(new_document).inserted_id
+
+            print(f"Document inserted with id: {inserted_id}")
+        else:
+            print('No document found with that _id.')
+
+    return jsonify(businesses=businesses)
 
 
 if __name__ == "__main__":
