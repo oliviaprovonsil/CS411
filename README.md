@@ -9,6 +9,7 @@ in the terminal:
 - 'npm start'
 
   once you have started the web app:
+  - log in with any Google account
   - enter the zip code of a location of your choosing
   - click enter and the app will determine the current weather of the city and choose outdoor or indoor events based on the weather
   - in the events tab it will display the list of places/businesses
