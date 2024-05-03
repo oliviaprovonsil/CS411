@@ -110,18 +110,37 @@ def index(location):
     "businesses": businesses,
 }
     
-    if collection.find_one({"location": location}):
-        app.logger.info(f"A document with location '{location}' already exists.")
-
-    else:     
-        if new_document:
-            inserted_id = collection.insert_one(new_document).inserted_id
-
-            print(f"Document inserted with id: {inserted_id}")
-        else:
-            print('No document found with that _id.')
 
     return jsonify(businesses=businesses)
+
+@app.route("/save", methods=['POST'])
+def save_event():
+    data = request.get_json()
+    location = data['data']['businesses'][0]
+    print("this is the location", location)
+    
+
+    existing = collection.find_one({"location": location})
+
+    if existing:
+        return jsonify({"message": "This location is already in the database.", "id": str(existing['_id'])}), 200
+    else:
+        try:
+            inserted_id = collection.insert_one({"location": location, "businesses": data['data']['businesses']}).inserted_id
+            return jsonify({"message": "Data saved successfully", "id": str(inserted_id)}), 201
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+        
+@app.route("/getTrips", methods=['GET'])
+def get_trips():
+    try:
+        trips = list(collection.find({}))
+        for trip in trips:
+            trip['_id'] = str(trip['_id'])  
+        return jsonify(trips), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+        
 
 
 if __name__ == "__main__":

@@ -44,7 +44,7 @@ function HomePage() {
       const handleKeyDown =  async (event) => {
         if (event.key === 'Enter'){
           event.preventDefault();
-        SearchButton();
+          SearchButton();
     
           try {
             const response = await fetch('http://localhost:5000/search', {
