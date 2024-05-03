@@ -1,0 +1,44 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+  
+  .events-container {
+    background-color: #f3f6fb;
+     /* Ensure full viewport height */
+  }
+
+
+  .events-title {
+    /* Center text horizontally */
+    text-align: center;
+    margin-top: 1rem;
+    
+  }
+  
+  .inline {
+    /* Ensure inline display and center text */
+    display: inline;
+    text-align: center;
+    
+  }
+  
+  /* Style to apply to inline elements */
+  .inline h2,
+  .inline p {
+    display: inline;
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 2rem;
+  }
+  
+ /* EVENT LIST*/
+
+  .event-list ul {
+    /* Remove default list styles */
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .event-list li {
+    /* Optional: Add some space between each event item */
+    margin-bottom: 10px;
+  }

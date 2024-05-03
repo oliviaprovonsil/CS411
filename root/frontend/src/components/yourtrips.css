@@ -1,0 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+  
+  .yt-container {
+    background-color: #f3f6fb;
+     /* Ensure full viewport height */
+  }
+
+
+  .yt-title {
+    /* Center text horizontally */
+    text-align: center;
+    margin-top: 1rem;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 2rem;
+  }
+
+  .yt-events {
+    text-align: center; /* Keep center alignment */
+  }
+  
+  .yt-events div {
+    display: inline-block; /* Ensures each div acts as a block */
+  }
+  
+  .yt-events ul { 
+    list-style-type: none; /* Remove bullet points from all unordered lists in yt-events */
+    padding: 0;
+  }
+  
+  .yt-events li { 
+    margin-bottom: 10px; /* Optional: spacing between items */
+  }

@@ -21,7 +21,7 @@ cluster_url = 'mongodb+srv://pranitd23:*****@weatherTravel.plxzhdv.mongodb.net/'
 db_name = 'test'
 
 # Create a MongoClient to the running mongod instance.
-client = MongoClient('mongodb+srv://pranitd23:pranit17@weather-project.plxzhdv.mongodb.net/{db_name}?retryWrites=true&w=majority',  tls=True, tlsAllowInvalidCertificates=True)
+client = MongoClient('mongodb+srv://pranitd23:pranit17@weather-project.plxzhdv.mongodb.net/{db_name}?retryWrites=true&w=majority', tls=True, tlsAllowInvalidCertificates=True)
 
 db = client[db_name]
 collection = db['test'] 
@@ -86,19 +86,19 @@ def index(location):
     feels_like_farenheit = data_weather["main"]["feels_like"]
 
     term = ""
-    if conditions in ["Clouds", "Rain", "Snow", "Thunderstorm", "Drizzle"] or feels_like_farenheit < 55:
-        term = "indoor"
+    if conditions in ["Rain", "Snow", "Thunderstorm", "Drizzle"] or feels_like_farenheit < 55:
+        term = "indoor fun"
     else:
-        term = "outdoor"
+        term = "outdoor fun"
 
-    url_travel = f"https://api.yelp.com/v3/businesses/search?term={term}&latitude={lat}&longitude={lon}"   
+    url_travel = f"https://api.yelp.com/v3/businesses/search?term={term}&latitude={lat}&longitude={lon}"
 
     api_key_Yelp = os.getenv('YELP_API_KEY')
 
     headers = {
     "accept": "application/json",
     "Authorization": f"Bearer {api_key_Yelp}"
-    }   
+    }
 
     response_travel = requests.get(url_travel, headers=headers)
     data_travel = response_travel.json()
@@ -110,18 +110,37 @@ def index(location):
     "businesses": businesses,
 }
     
-    if collection.find_one({"location": location}):
-        app.logger.info(f"A document with location '{location}' already exists.")
-
-    else:     
-        if new_document:
-            inserted_id = collection.insert_one(new_document).inserted_id
-
-            print(f"Document inserted with id: {inserted_id}")
-        else:
-            print('No document found with that _id.')
 
     return jsonify(businesses=businesses)
+
+@app.route("/save", methods=['POST'])
+def save_event():
+    data = request.get_json()
+    location = data['data']['businesses'][0]
+    print("this is the location", location)
+    
+
+    existing = collection.find_one({"location": location})
+
+    if existing:
+        return jsonify({"message": "This location is already in the database.", "id": str(existing['_id'])}), 200
+    else:
+        try:
+            inserted_id = collection.insert_one({"location": location, "businesses": data['data']['businesses']}).inserted_id
+            return jsonify({"message": "Data saved successfully", "id": str(inserted_id)}), 201
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+        
+@app.route("/getTrips", methods=['GET'])
+def get_trips():
+    try:
+        trips = list(collection.find({}))
+        for trip in trips:
+            trip['_id'] = str(trip['_id'])
+        return jsonify(trips), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+        
 
 
 if __name__ == "__main__":
