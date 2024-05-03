@@ -1,11 +1,17 @@
 # How to Run
 
 cd into root/frontend in the terminal:
+
 'npm install'
+
 'pip install requests'
+
 'pip install python-dotenv'
+
 'pip install cors'
+
 run server.py
+
 'npm start'
 
 once you have started the web app:
