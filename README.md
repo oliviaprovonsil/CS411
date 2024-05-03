@@ -1,4 +1,5 @@
 # How To Run:
+- cd into root/frontend
 in the terminal:
 - 'npm install'
 - 'pip install requests'
