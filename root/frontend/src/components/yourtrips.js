@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "./navbar"
 import { useEffect, useState } from 'react';
+import './yourtrips.css'
 
 function YourTrips() {
   const [trips, setTrips] = useState([]);
@@ -15,10 +16,12 @@ function YourTrips() {
 }, []);
 
     return (
-      <div>
+      <div className = "yt-container">
           <NavBar />
-          <h1>Your Trips</h1>
-          <div>
+          <div className = "yt-title">
+            <p>Your Trips</p>
+          </div>
+          <div className = "yt-events">
               {trips.map((trip, index) => (
                   <div key={index}>
                       <h3>{trip.location}</h3> 

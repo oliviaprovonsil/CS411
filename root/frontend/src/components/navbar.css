@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Bungee&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -26,6 +28,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    font-family: "Bungee", sans-serif;
 }
 
 .nav li:hover {

@@ -14,8 +14,6 @@ function HomePage() {
     
     /* Arrival-Departure*/
     const [value, setValue] = useState('');
-    const [arrivalDate, setArrivalDate] = useState('');
-    const [departureDate, setDepartureDate] = useState('');
     const [input, setInput] = useState("");
     const navigate = useNavigate();
 
@@ -23,23 +21,7 @@ function HomePage() {
         setValue(event.target.value);
     };
 
-    const handleArrivalDateChange = (event) => {
-        setArrivalDate(event.target.value);
-    };
-
-    const handleDepartureDateChange = (event) => {
-        const newDepartureDate = event.target.value;
-
-        // Perform validation
-        if (new Date(newDepartureDate) <= new Date(arrivalDate)) {
-            alert('Departure date must be later than arrival date');
-            // Reset the departure date
-            setDepartureDate('');
-        } else {
-            setDepartureDate(newDepartureDate);
-        }
-    
-      }
+  
 
       const handleKeyDown =  async (event) => {
         if (event.key === 'Enter'){
@@ -103,16 +85,6 @@ function HomePage() {
                 />
             </div>
 
-            <div id="arrival-departure-container">
-                <div id="arrival-date">
-                    <p>Arrival:</p>
-                    <input type="date" name="arrival" value={arrivalDate} onChange={handleArrivalDateChange} />
-                </div>
-                <div id="departure-date">
-                    <p>Departure:</p>
-                    <input type="date" name="departure" value={departureDate} onChange={handleDepartureDateChange} />
-                </div>
-            </div> 
 
             <div className="search-button">
             <Link to="/events">
