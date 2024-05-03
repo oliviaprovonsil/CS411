@@ -21,4 +21,4 @@ once you have started the web app:
 - click enter and the app will determine the current weather of the city and choose outdoor or indoor events based on the weather
 - in the events tab it will display the list of places/businesses
 - click "save to your trips" to save it to the database
-- the "your trips" tab will display all past searches you have saved
+- the "your trips" tab will display all past searches you have saved (refresh to see your most recently saved trip)
