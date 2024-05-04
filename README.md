@@ -25,4 +25,4 @@ once you have started the web app:
 
 
 Here is a Demo of our project:
-[https://youtu.be/OKQX6braBDI]((https://youtu.be/OKQX6braBDI))
+[https://youtu.be/OKQX6braBDI](https://youtu.be/OKQX6braBDI)
